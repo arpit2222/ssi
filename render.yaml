@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ssi-strategy-factory-api
+    env: node
+    plan: free
+    buildCommand: npm install && npm --prefix backend run build
+    startCommand: npm --prefix backend run start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: SOSOVALUE_API_KEY
+        sync: false
+      - key: SODEX_API_KEY
+        sync: false
+      - key: PRIVATE_KEY
+        sync: false

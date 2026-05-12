@@ -1,0 +1,9 @@
+{
+  "name": "SSI Strategy Factory",
+  "short_name": "SSI Factory",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f8fb",
+  "theme_color": "#0f766e",
+  "icons": []
+}
