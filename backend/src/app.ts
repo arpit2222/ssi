@@ -13,6 +13,7 @@ import { analyticsRouter } from "./routes/analytics.js";
 import { marketplaceRouter } from "./routes/marketplace.js";
 import { adminRouter } from "./routes/admin.js";
 import { sosoValueRouter } from "./routes/sosovalue.js";
+import { sodexRouter } from "./routes/sodex.js";
 
 export const app = express();
 
@@ -30,5 +31,6 @@ app.use("/api/review", reviewRouter);
 app.use("/api/analytics", analyticsRouter);
 app.use("/api/marketplace", marketplaceRouter);
 app.use("/api/sosovalue", sosoValueRouter);
+app.use("/api/sodex", sodexRouter);
 app.use("/api/admin", adminRouter);
 app.use(errorHandler);

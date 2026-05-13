@@ -44,3 +44,11 @@ npm --prefix contracts test
 - BasketVault: `0x2CB9ED6e8332b5124cB0f8E55A8428E52a9D6770`
 - RebalanceEngine: `0xfa41C917D719e0B0FbFB842E1865122AE8490D1b`
 - FeeDistribution: `0x8FFA1990441530691EB7380A88a7d061F6Ddd2B4`
+
+## SoDEX Testnet
+
+- Spot API: `https://testnet-gw.sodex.dev/api/v1/spot`
+- API key name: `default`
+- Account address: `0x79601AC98F844aD09b485F739D3C478C5b131A10`
+- Account ID: `56898`
+- Signed writes are controlled by `SODEX_ENABLE_TRADING`.

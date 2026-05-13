@@ -15,8 +15,20 @@ export async function executeRebalance(basketId: string) {
   const total = newWeights.reduce((sum: number, asset: any) => sum + asset.weight, 0);
   newWeights.forEach((asset: any) => { asset.weight = Number(((asset.weight / total) * 100).toFixed(2)); });
 
-  const trades = await Promise.all(newWeights.map((asset: any) => quoteTrade(asset.symbol, asset.weight > 20 ? "BUY" : "SELL", asset.weight * 100)));
-  await Promise.all(trades.map(submitSwap));
+  const quotes = await Promise.all(newWeights.map((asset: any) => quoteTrade(asset.symbol, asset.weight > 20 ? "BUY" : "SELL", asset.weight * 100)));
+  const executions = await Promise.all(quotes.map(submitSwap));
+  const trades = quotes.map((quote, index) => ({
+    symbol: quote.symbol,
+    marketSymbol: quote.marketSymbol,
+    action: quote.action,
+    amount: quote.amount,
+    price: quote.price,
+    slippage: quote.slippage,
+    status: executions[index]?.status,
+    reason: executions[index]?.reason || quote.reason,
+    order: executions[index]?.order,
+    response: executions[index]?.response
+  }));
   const feesCollected = Number(((basket.metrics?.aum || 0) * ((basket.fees?.managementFee || 0) / 100) / 12).toFixed(2));
   const chain = await recordRebalanceOnChain(basket.onChainId || undefined, newWeights, feesCollected);
 

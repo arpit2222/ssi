@@ -4,7 +4,8 @@ import { signer } from "../config/blockchain.js";
 
 const registryAbi = [
   "function createBasket(string metadataURI, bytes32 compositionHash, uint16 managementFeeBps, uint16 performanceFeeBps) returns (uint256)",
-  "function updateBasket(uint256 basketId, string metadataURI, bytes32 compositionHash, bool active)"
+  "function updateBasket(uint256 basketId, string metadataURI, bytes32 compositionHash, bool active)",
+  "event BasketCreated(uint256 indexed basketId, address indexed creator, string metadataURI, bytes32 compositionHash)"
 ];
 
 const engineAbi = [
@@ -31,7 +32,16 @@ export async function registerBasketOnChain(params: {
     Math.round(params.performanceFee * 100)
   );
   const receipt = await tx.wait();
-  return { onChainId: undefined, txHash: receipt.hash as string };
+  const event = receipt.logs
+    .map((log: unknown) => {
+      try {
+        return contract.interface.parseLog(log as any);
+      } catch {
+        return undefined;
+      }
+    })
+    .find((log: any) => log?.name === "BasketCreated");
+  return { onChainId: event ? String(event.args.basketId) : undefined, txHash: receipt.hash as string };
 }
 
 export async function recordRebalanceOnChain(onChainId: string | undefined, composition: unknown, feeAmount: number) {

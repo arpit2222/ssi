@@ -3,10 +3,15 @@ import mongoose, { Schema } from "mongoose";
 const WeightSchema = new Schema({ symbol: String, weight: Number }, { _id: false });
 const TradeSchema = new Schema({
   symbol: String,
+  marketSymbol: String,
   action: { type: String, enum: ["BUY", "SELL"] },
   amount: Number,
   price: Number,
-  slippage: Number
+  slippage: Number,
+  status: String,
+  reason: String,
+  order: Schema.Types.Mixed,
+  response: Schema.Types.Mixed
 }, { _id: false });
 
 const RebalanceSchema = new Schema({

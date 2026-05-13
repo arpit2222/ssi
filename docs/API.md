@@ -56,3 +56,12 @@ Backed by the documented SoSoValue OpenAPI using the `x-soso-api-key` header.
 - `GET /sosovalue/etf/us-btc-spot/historical-inflow`
 - `GET /sosovalue/etf/us-eth-spot/metrics`
 - `GET /sosovalue/etf/us-eth-spot/historical-inflow`
+
+## SoDEX
+
+Backed by the documented SoDEX testnet spot API. Read routes are public. Order placement requires wallet auth and backend signing credentials.
+
+- `GET /sodex/symbols`
+- `GET /sodex/account`
+- `GET /sodex/quote/:symbol?action=BUY&amount=5`
+- `POST /sodex/test-order` with `{ "symbol": "TESTBTC", "amount": 5 }`

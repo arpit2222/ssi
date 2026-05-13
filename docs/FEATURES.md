@@ -11,3 +11,4 @@
 - Reviews, ratings, advanced analytics, performance history, and fee accounting.
 - PWA-ready responsive frontend.
 - Smart contracts for registry, vault, rebalancing events, and fee distribution.
+- SoDEX testnet spot integration with EIP-712 signed market-buy orders, account state reads, symbol discovery, and safe simulated mode.
