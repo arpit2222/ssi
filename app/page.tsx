@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Boxes, ShieldCheck, Download } from "lucide-react";
+import { ArrowRight, BarChart3, Boxes, ShieldCheck, Download, FileCode2 } from "lucide-react";
 import { BasketCard } from "@/components/BasketCard";
 import { API_URL } from "@/lib/constants";
 import type { Basket } from "@/types";
@@ -49,6 +49,32 @@ export default async function Home() {
           {featured.slice(0, 6).map((basket) => <BasketCard key={basket._id} basket={basket} />)}
           {!featured.length && <div className="surface p-5 text-gray-500">Run backend seed to load the 10 demo baskets.</div>}
         </div>
+
+        <div className="mt-20 border-t border-line pt-14 text-left">
+          <div className="flex items-center gap-3 mb-6">
+            <FileCode2 className="text-accent" size={28} />
+            <h2 className="text-3xl font-black text-ink">Live on Arbitrum Sepolia</h2>
+          </div>
+          <p className="text-gray-600 max-w-3xl mb-8">
+            Our full suite of smart contracts is deployed and verified on the Arbitrum Sepolia testnet. These contracts handle the non-custodial vault storage, decentralized fee distribution, and real-time integration with the SoDEX spot exchange.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              ["Basket Registry", "0x9A1EF6E5EFAE3c63dC41D2c7678B43889108C1d3"],
+              ["Basket Vault", "0x2CB9ED6e8332b5124cB0f8E55A8428E52a9D6770"],
+              ["Rebalance Engine", "0xfa41C917D719e0B0FbFB842E1865122AE8490D1b"],
+              ["Fee Distribution", "0x8FFA1990441530691EB7380A88a7d061F6Ddd2B4"]
+            ].map(([name, address]) => (
+              <div key={name} className="surface p-4 flex flex-col gap-1">
+                <span className="text-sm font-bold text-gray-800">{name}</span>
+                <a href={`https://sepolia.arbiscan.io/address/${address}`} target="_blank" rel="noreferrer" className="text-accent text-sm font-mono truncate hover:underline">
+                  {address}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-20 border-t border-line pt-14 pb-10 text-center">
           <h2 className="text-3xl font-black text-ink">Ready to see the full vision?</h2>
           <p className="mt-3 text-gray-600 max-w-2xl mx-auto">Download our official Buildathon pitch deck to explore the $500B+ market opportunity, business model, and go-to-market strategy for the Shopify of On-Chain Indices.</p>
