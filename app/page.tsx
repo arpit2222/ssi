@@ -49,7 +49,6 @@ export default async function Home() {
           {featured.slice(0, 6).map((basket) => <BasketCard key={basket._id} basket={basket} />)}
           {!featured.length && <div className="surface p-5 text-gray-500">Run backend seed to load the 10 demo baskets.</div>}
         </div>
-        </div>
         <div className="mt-20 border-t border-line pt-14 pb-10 text-center">
           <h2 className="text-3xl font-black text-ink">Ready to see the full vision?</h2>
           <p className="mt-3 text-gray-600 max-w-2xl mx-auto">Download our official Buildathon pitch deck to explore the $500B+ market opportunity, business model, and go-to-market strategy for the Shopify of On-Chain Indices.</p>
