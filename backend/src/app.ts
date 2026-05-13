@@ -16,6 +16,7 @@ import { sosoValueRouter } from "./routes/sosovalue.js";
 import { sodexRouter } from "./routes/sodex.js";
 
 export const app = express();
+app.set("trust proxy", 1);
 
 app.use(helmet());
 app.use(cors({ origin: env.frontendOrigin, credentials: true }));
